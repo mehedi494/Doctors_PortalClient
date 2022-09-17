@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Home from './Pages/Home/Home/Home';
+import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Appointment from './Pages/Appoinments/Appoinment/Appointment';
+import Login from './Pages/Login/Login/Login';
+import Register from './Pages/Login/Register/Register';
+import AuthPorvider from './Hooks/AuthProvider';
+import PrivetRoute from './Pages/PrivetRoute/PrivetRoute';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <AuthPorvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {/* <Route path="/appoinment" element={}></Route> */}
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
+          <Route element={<PrivetRoute></PrivetRoute>}>
+            <Route path="/appoinment" element={<Appointment></Appointment>}></Route>
+          </Route>
+
+
+
+        </Routes>
+      </BrowserRouter>
+    </AuthPorvider>
+    
   );
 }
 
