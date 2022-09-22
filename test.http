@@ -1,0 +1,6 @@
+
+
+PUT  http://localhost:5000/make/admin
+Authorization: `Bearer sdfjlsdjflsjfjfj`
+            body: JSON.stringify("ehasnamunna21@gmail.com")
+            

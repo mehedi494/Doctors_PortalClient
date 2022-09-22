@@ -4,13 +4,13 @@ import {  } from '@mui/material/';
 import BookingModal from './../BookingModal/BookingModal';
 
 
-import TextField from '@mui/material/TextField';
 
 
 
 
 
-const Booking = ({ service }) => {
+
+const Booking = ({ service, date, setSuccessBooking }) => {
     const { name, time, space } = service;
     const [openModal, setOpenModal] = React.useState(false);
     const handleOpen = () => setOpenModal(true);
@@ -27,7 +27,7 @@ const Booking = ({ service }) => {
                     </Box>
                 </Paper>
             </Grid>
-            <BookingModal time={time} key={service.id} service={service} openModal={openModal} setOpenModal={setOpenModal} ></BookingModal>
+            <BookingModal date={date} time={time} key={service.id} service={service} openModal={openModal} setOpenModal={setOpenModal} setSuccessBooking={setSuccessBooking}></BookingModal>
         </>
         
     );
