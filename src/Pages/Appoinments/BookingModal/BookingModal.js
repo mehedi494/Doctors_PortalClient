@@ -13,7 +13,7 @@ const BookingModal = ({ openModal, setOpenModal, service, date, setSuccessBookin
     const { name, time } = service;
 
     const { user, } = useAuth();
-    const [isLoading, setIsLoading]=useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const { displayName, email } = user;
 
     const initialInfo = {
@@ -43,8 +43,8 @@ const BookingModal = ({ openModal, setOpenModal, service, date, setSuccessBookin
         e.preventDefault()
         const appoinment = { ...bookingInfo, serviceName: name, time, date: date.$d.toLocaleDateString() }
         // console.log(appoinment);
-        
-        fetch('http://localhost:5000/appointment', {
+
+        fetch('https://doctorsportal-serverside.onrender.com/appointment', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -122,7 +122,7 @@ const BookingModal = ({ openModal, setOpenModal, service, date, setSuccessBookin
                                 <TextField sx={{ width: 1 }} value={date.$d.toDateString()} variant="outlined" />
                                 <br /><br />
                                 <Button type="submit" variant='contained'>
-                                    {isLoading ? 'Loading...': "Submit"}</Button>
+                                    {isLoading ? 'Loading...' : "Submit"}</Button>
 
                             </form>
                         </Box>

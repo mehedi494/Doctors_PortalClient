@@ -12,12 +12,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ConfirmPopup({ open,  handleClose, appointments, setAppointments,id }) {
-    const {token}=useAuth()
+export default function ConfirmPopup({ open, handleClose, appointments, setAppointments, id }) {
+    const { token } = useAuth()
     const handleRemove = (id) => {
         console.log(id);
 
-        fetch('http://localhost:5000/delete/appointments', {
+        fetch('https://doctorsportal-serverside.onrender.com/delete/appointments', {
             method: "DELETE",
             headers: {
                 "authorization": `Brearer ${token}`,
@@ -35,7 +35,7 @@ export default function ConfirmPopup({ open,  handleClose, appointments, setAppo
 
     return (
         <div>
-            
+
             <Dialog
                 open={open}
                 TransitionComponent={Transition}
@@ -51,7 +51,7 @@ export default function ConfirmPopup({ open,  handleClose, appointments, setAppo
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>No</Button>
-                    <Button variant="outlined" color="error" onClick={()=>handleRemove(id)}>Yes</Button>
+                    <Button variant="outlined" color="error" onClick={() => handleRemove(id)}>Yes</Button>
                 </DialogActions>
             </Dialog>
         </div>

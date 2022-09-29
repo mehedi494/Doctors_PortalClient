@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     }
     const handleMakeAdmin = (e) => {
 
-        fetch('http://localhost:5000/make/admin', {
+        fetch('https://doctorsportal-serverside.onrender.com/make/admin', {
             method: 'PUT',
             headers: {
                 "authorization": `Bearer ${token}`,

@@ -10,13 +10,13 @@ const Banner = () => {
             <Grid container spacing={2} sx={{m:0,display:"flex", alignItems:"center",p:5}}>
                 <Grid xs={12} md={7} sx={{textAlign:"left", p:2}}>
                     <Box  >
-                        <Typography variant='h3'>
+                        <Typography variant='h3' sx={{ color:'#3A4256'}}>
                             Your New Smile  <br/> Starts Here
                         </Typography>
-                        <Typography variant='h6'>
+                        <Typography variant='h6' sx={{ color:"#3A4256"}}>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
                         </Typography>
-                        <Button variant="contained" sx={{ backgroundColor: "#19D3AE", mt: 2 }}> Get Started</Button>
+                        <Button variant="contained" sx={{ backgroundColor: "#00bcd4", mt: 2 }}> Get Started</Button>
                     </Box>
                 </Grid>
                 <Grid xs={12} md={5}>

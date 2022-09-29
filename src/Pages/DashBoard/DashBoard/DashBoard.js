@@ -9,12 +9,19 @@ import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { IconButton } from '@mui/material';
-import {  NavLink, Route, Routes } from 'react-router-dom';
+import { Avatar, Button, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import BookedAppointment from '../BookedAppointment/BookedAppointment';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctors from '../AddDoctors/AddDoctors';
 import { useAuth } from './../../../Hooks/useAuth';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ReplyIcon from '@mui/icons-material/Reply';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import EmailIcon from '@mui/icons-material/Email';
+import PermIdentityTwoToneIcon from '@mui/icons-material/PermIdentityTwoTone';
 
 
 const drawerWidth = 240;
@@ -32,7 +39,8 @@ function DashBoard(props) {
     let activeStyle = {
         TransitionEvent: '.5sec',
         textDecoration: "underline",
-        color: "black"
+        color: "black",
+        background:"#81d4fa"
     };
 
     let notActiveStyle = {
@@ -41,15 +49,31 @@ function DashBoard(props) {
 
     };
 
-    const { isAdmin } = useAuth()
+    
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+    const { user, logOut,isAdmin } = useAuth()
 
 
     const drawer = (
         <div>
+            <Toolbar sx={{ background:"#1976D2"}}>
+                <Typography variant="h5" sx={{fontWeight:400}} color="white">DASH BAR</Typography>
+            </Toolbar>
             <Toolbar />
 
 
-            <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/appoinment"><ListItemButton color="inherit">Go Appointment page</ListItemButton></NavLink>
+            <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/appoinment"><ListItemButton color="#81d4fa"> <ReplyIcon/> Go Appointment page</ListItemButton></NavLink>
 
 
 
@@ -58,15 +82,15 @@ function DashBoard(props) {
 
 
             <List>
-                <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/dashboard/"><ListItemButton color="inherit">Booked Appointment</ListItemButton>
+                <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/dashboard/"><ListItemButton color="#81d4fa"> <BookmarkAddedIcon/> Booked Appointment</ListItemButton>
                 </NavLink>
 
                 {isAdmin && <Box>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/dashboard/admin">
-                        <ListItemButton color="inherit"  >Make Admin </ListItemButton>
+                        <ListItemButton color="inherit"  ><AdminPanelSettingsIcon/> Make Admin </ListItemButton>
                     </NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : notActiveStyle} to="/dashboard/addDoctor">
-                        <ListItemButton color="inherit"  >Add Doctors </ListItemButton>
+                        <ListItemButton color="inherit"  ><PersonAddAlt1Icon/>Add Doctors </ListItemButton>
                     </NavLink>
                 </Box>}
 
@@ -89,7 +113,7 @@ function DashBoard(props) {
                 }}
             >
 
-                <Toolbar>
+                <Toolbar sx={{ dislplay: 'flex', justifyContent: 'space-between' }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -102,7 +126,50 @@ function DashBoard(props) {
                     <Typography variant="h6" noWrap component="div">
                         Doctors Portal
                     </Typography>
+
+                    {user.email ? <Box sx={{ flexGrow: 0 }}>
+                        <Tooltip title="Open settings">
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar src={user?.photoURL ? user.photoURL : "/broken-image.jpg"} />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                        >
+
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                {
+                                    user.email && <>< PermIdentityTwoToneIcon /> {user.displayName}</>
+                                }
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseUserMenu}>
+                                {
+                                    user.email && <>< EmailIcon /> {user.email}</>
+                                }
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseUserMenu && logOut}>
+                                <ExitToAppIcon /> Log out  
+                            </MenuItem>
+
+                        </Menu>
+                    </Box> : <Link style={{ textDecoration: 'none', color: "white" }} to="/login">  <Button color="inherit">Login</Button></Link>}
                 </Toolbar>
+
+                {/* Profile */}
+                
             </AppBar>
             <Box
                 component="nav"

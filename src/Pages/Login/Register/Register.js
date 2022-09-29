@@ -5,9 +5,10 @@ import loginImg from "../../../assets/images/login.png"
 import { TextField, Button, Typography, CircularProgress } from '@mui/material';
 import { Link,  useNavigate, } from 'react-router-dom';
 import { useAuth } from './../../../Hooks/useAuth';
-
+import Navigation from './../../Shared/Navigation/Navigation';
 
 const Register = () => {
+
     const [registerData, setRegisterData] = React.useState({});
     const { Register, isLoading, errorMsg, user, GoogleLogin } = useAuth();
     
@@ -40,6 +41,7 @@ const Register = () => {
 
     return (
         <>
+            <Navigation></Navigation>
         {
             !user.email ? <Box sx={{ width: '100%' }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ p: 5 }}>

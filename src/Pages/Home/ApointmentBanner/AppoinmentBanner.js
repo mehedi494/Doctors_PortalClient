@@ -5,23 +5,24 @@ import doctor from "../../../assets/images/doctor.png"
 import bg from "../../../assets/images/appointment.png"
 import { Button, Typography } from '@mui/material';
 
-import { Container } from '@mui/system';
+
 
 const AppoinmentBanner = () => {
     const backgroundStyle = {
         backgroundImage: `url(${bg})`,
         backgroundColor: "rgba(83, 91, 107,0.9)",
         backgroundBlendMode:"Darken",
-        margin: "100px 0",
+        margin: "100px 0 50px 0",
+        pading:0
 
     }
     return (
         
-        <Box container style={backgroundStyle} sx={{ flexGrow: 1,  } }>
+        <Box  style={backgroundStyle} sx={{ flexGrow: 1,  } }>
                 <Grid container spacing={2} sx={{m:0, display: "flex", justifyContent: "start", textAlign: "start", alignItems: 'center' }}>
                    
                 <Grid sx={{ p: 0, m: 0 }} xs={12} md={6}>
-                        <img style={{width:"100%", marginTop: "-120px" }} src={doctor} alt="doctorImage" />
+                        <img style={{width:"100%", marginTop: "-120px"  }} src={doctor} alt="doctorImage" />
                     </Grid>
 
                 

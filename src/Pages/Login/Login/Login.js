@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './../../../Hooks/useAuth';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import Navigation from './../../Shared/Navigation/Navigation';
 
 
 const Login = () => {
@@ -50,7 +51,7 @@ const Login = () => {
 
 
     return (<>
-       
+       <Navigation></Navigation>
                 <Box sx={{ width: '100%' }}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ p: 5 }}>
                         <Grid sx={{ width: '75%', display: 'flex', marginTop: '30px', alignItems: '', justifyContent: 'center', }} item xs={12} sm={12} md={6}>

@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useAuth } from '../../../Hooks/useAuth';
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import ConfirmPopup from './ConfirmPopup/ConfirmPopup';
 
 
@@ -35,7 +35,7 @@ setId(e)
 
     useEffect(() => {
         setIsLoading(true)
-        const uri = `http://localhost:5000/appointments?email=${user?.email}&date=${date}`
+        const uri = `https://doctors-portal-server-2rol-ozuh11rwe-mehedi494.vercel.app/appointments?email=${user?.email}&date=${date}`
         fetch((uri), {
             headers: {
                 "authorization": `Bearer ${token}`
@@ -81,7 +81,9 @@ setId(e)
                                     </TableCell>
                                     <TableCell align="right">{row.serviceName}</TableCell>
                                     <TableCell align="right">{row.time}</TableCell>
-                                    <TableCell align="right">Pending</TableCell>
+                                    <TableCell align="right" variant='outlined'>
+                                        <Typography variant='Subtitle1' sx={{border:"2px solid cyan", p:1,}}>Pending</Typography>
+                                    </TableCell>
                                     <TableCell align="right"><Button variant="contained" onClick={()=>handleClickOpen(row._id)}>Remove</Button></TableCell>
                                 </TableRow>
                             ))}
